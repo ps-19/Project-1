@@ -5,6 +5,9 @@ import './weather.css';
 function Weather() {
     const [weather,setWeather] = useState([]);
     const [forecast,setForecast] = useState([]);
+    const  [ loaded , setLoaded] = useState(false);
+    // const [value,setValue] = useState([]);
+    
     const [form,setform]=useState({
         city: "",
         country: ""
@@ -59,9 +62,6 @@ function Weather() {
             const longitude = position.coords.longitude;
             const API_KEY = "9d1619b463c902d5357a1cf23621ccba";
             const url="https://api.openweathermap.org/data/2.5/find?lat="+latitude+"&lon="+longitude+"&cnt=1&appid="+API_KEY;
-            
-
-            // console.log(url);
 
             const data2 = await fetch(url)
             .then(response => response.json())
@@ -69,25 +69,27 @@ function Weather() {
 
             const city = data2.list[0].name;
             const url2 = 'https://api.openweathermap.org/data/2.5/weather?q='+city+'&appid='+API_KEY;
-            // console.log(url2);
+
 
             const data = await fetch(url2)
             .then(response => response.json())
             .then(jsondata => jsondata);
 
             const url3="http://api.openweathermap.org/data/2.5/forecast?q="+city+"&appid="+API_KEY;
-            // console.log(url3);
+
+            
             const fdata = await fetch(url3)
             .then(response => response.json())
             .then(jsondata => jsondata);
 
-            Display({ data: data , data2:fdata});
+            Display({ data: data, data2: fdata});
             setWeather({
                 data: data
             });
             setForecast({
                 data: fdata
             });
+            setLoaded(true);
         });
     }
 
@@ -103,7 +105,7 @@ function Weather() {
             </form>
 
             {
-                weather.data !== undefined ? (
+                ((weather.data !== undefined) && (forecast.data !== undefined)) ? (
                     <div>
                         <Display data={weather.data} data2={forecast.data}/>
                     </div>

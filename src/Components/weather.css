@@ -10,7 +10,7 @@
 .weather .title {
   font-size: 4rem;
   display: grid;
-  margin-left: 100px;
+  margin-left: 65px;
   font-family: "Times New Roman", Times, serif;
 }
 .weather form {

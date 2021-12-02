@@ -83,4 +83,16 @@
   .displayweather .weatherdetails span {
     font-size: 1.2rem;
   }
+  .card{
+    display: grid;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  .points{
+    color: red;
+    font-family: cursive;
+  }
+  .title-2{
+    font-family: cursive;
+    font-size: 22px;
+  }
   
