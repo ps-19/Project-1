@@ -39,7 +39,7 @@ function Weather() {
             .then(jsondata => jsondata);
             
             const url3="http://api.openweathermap.org/data/2.5/forecast?q="+form.city+"&appid="+API_KEY;
-            // console.log(url3);
+            console.log(url3);
             
             const fdata = await fetch(url3)
             .then(response => response.json())
